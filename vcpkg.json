@@ -1,0 +1,18 @@
+{
+  "name" : "nbody-executor",
+  "version-string" : "1.0.0",
+  "builtin-baseline" : "4a8d11802f0a9ffbe5c68f6143d61d469d800a7d",
+  "dependencies" : [ {
+    "name" : "glm",
+    "version>=" : "2023-06-08"
+  }, {
+    "name" : "bshoshany-thread-pool",
+    "version>=" : "3.5.0"
+  }, {
+    "name" : "glfw3",
+    "version>=" : "3.3.8#2"
+  }, {
+    "name" : "glew",
+    "version>=" : "2.2.0#3"
+  }]
+}
