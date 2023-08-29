@@ -14,7 +14,7 @@ namespace NBodyExecutor{
     public:
         std::vector<std::size_t> work_partition;
 
-        NaiveExecutor(std::unique_ptr<BS::thread_pool> thread_pool = nullptr);
+        explicit NaiveExecutor(std::unique_ptr<BS::thread_pool> thread_pool = nullptr);
 
         void execute(std::span<Body> bodies, float time_delta) override;
     };
