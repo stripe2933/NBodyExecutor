@@ -21,9 +21,7 @@ namespace NBodyExecutor{
     public:
         float threshold = 1.f; // If (node size) / (body distance) is less than this value, regards the node as a single body.
 
-        explicit BarnesHutExecutor(std::unique_ptr<BS::thread_pool> thread_pool = nullptr) : Executor { std::move(thread_pool) } {
-
-        }
+        explicit BarnesHutExecutor(std::unique_ptr<BS::thread_pool> thread_pool = nullptr);
 
         void execute(std::span<Body> bodies, float time_delta) override;
     };

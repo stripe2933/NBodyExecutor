@@ -62,6 +62,10 @@ void NBodyExecutor::BarnesHutExecutor::applyGravityField(Body &body, const OctTr
     }
 }
 
+NBodyExecutor::BarnesHutExecutor::BarnesHutExecutor(std::unique_ptr<BS::thread_pool> thread_pool) : Executor { std::move(thread_pool) } {
+
+}
+
 void NBodyExecutor::BarnesHutExecutor::execute(std::span<Body> bodies, float time_delta) {
     // OctTree accepts the const pointer of bodies.
     auto body_addresses = bodies | std::views::transform([](Body &body) { return &body; });
