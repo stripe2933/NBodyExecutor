@@ -9,7 +9,7 @@
 #include <glm/gtc/random.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#define EXECUTE_METHOD 1 // 0 -> NaiveExecutor, 1 -> BarnesHutExecutor
+#define EXECUTE_METHOD 0 // 0 -> NaiveExecutor, 1 -> BarnesHutExecutor
 #if EXECUTE_METHOD == 0
 #include <NaiveExecutor.hpp>
 #define EXECUTOR NaiveExecutor
@@ -76,11 +76,7 @@ public:
     App(std::size_t num_bodies) : OpenGL::Window { 640, 480, "N-Body Simulation" },
                                   program { "shaders/galaxy.vert", "shaders/galaxy.frag" },
                                   bodies { generateBodies(num_bodies) },
-#if EXECUTE_METHOD == 0
-                                  executor { std::make_unique<BS::thread_pool>(), num_bodies }
-#elif EXECUTE_METHOD == 1
                                   executor { std::make_unique<BS::thread_pool>() }
-#endif
     {
         const glm::mat4 view = glm::lookAt(glm::vec3(-1.f, 1.5f, 5.f), glm::vec3(0.f), glm::vec3(0.f, 1.f, 0.f));
         const glm::mat4 projection = glm::perspective(glm::radians(45.f), getAspectRatio(), 0.1f, 100.f);
