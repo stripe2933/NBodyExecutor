@@ -18,6 +18,8 @@ namespace NBodyExecutor{
 
         }
 
+        virtual ~Executor() = default;
+
         /**
          * @brief Execute the N-body simulation.
          * @param bodies Bodies interacting with each other.
