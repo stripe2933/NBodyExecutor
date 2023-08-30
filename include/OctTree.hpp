@@ -92,7 +92,7 @@ NBodyExecutor::OctTree::OctTree(const Cube &bound, std::ranges::input_range auto
     static_assert(std::is_convertible_v<std::ranges::range_value_t<decltype(bodies)>, const Body*>);
 
     root = getNodeFromPool(bound);
-    for (Body *body : bodies){
+    for (const Body *body : bodies){
         root->addBody(body, [this](const Cube &bound){
             return getNodeFromPool(bound);
         });
