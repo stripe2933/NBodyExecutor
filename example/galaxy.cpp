@@ -62,10 +62,10 @@ private:
             const glm::vec3 velocity = 0.2f * glm::vec3(position.z, normal_dis(gen), -position.x);
 
             return Body {
-                    .mass = std::lerp(0.5f, 2.f, uniform_dis(gen)),
-                    .position = position,
-                    .velocity = velocity,
-                    /* .acceleration = glm::zero<glm::vec3>() */ // will be initialized as zero later.
+                .mass = std::lerp(0.5f, 2.f, uniform_dis(gen)),
+                .position = position,
+                .velocity = velocity,
+                /* .acceleration = glm::zero<glm::vec3>() */ // will be initialized as zero later.
             };
         });
 

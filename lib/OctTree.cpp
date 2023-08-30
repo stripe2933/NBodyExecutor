@@ -69,7 +69,7 @@ NBodyExecutor::OctTree::Node *NBodyExecutor::OctTree::getNodeFromPool(const Cube
     return &node_pool.emplace_back(bound);
 }
 
-void NBodyExecutor::OctTree::fetchNonEmptyBoxes(const NBodyExecutor::OctTree::Node *node, std::vector<Cube> &boxes) const{
+void NBodyExecutor::OctTree::fetchNonEmptyBoxes(const Node *node, std::vector<Cube> &boxes) const{
     if (node->isLeaf()){
         boxes.push_back(node->data.bound);
     }
