@@ -30,14 +30,14 @@ NBodyExecutor::NaiveExecutor::NaiveExecutor(std::unique_ptr<BS::thread_pool> thr
 }
 
 void NBodyExecutor::NaiveExecutor::execute(std::span<Body> bodies, float time_delta){
-    if (thread_pool){
+    if (thread_pool){ // Use multithreading.
         // If work_partition is not initialized or thread count is changed, re-generate work_partition.
         if (work_partition.size() != thread_pool->get_thread_count() + 1 || work_partition.back() != bodies.size()){
             work_partition = generateWorkPartition(bodies.size(), thread_pool->get_thread_count());
         }
 
         const auto interaction_partial_task = [&](std::size_t start_idx, std::size_t end_idx) -> std::vector<glm::vec3>{
-            std::vector partial_acceleration { bodies.size(), glm::vec3(0.f) };
+            std::vector partial_acceleration { bodies.size(), glm::zero<glm::vec3>() };
             for (std::size_t idx1 = start_idx; idx1 < end_idx; ++idx1){
                 for (std::size_t idx2 = idx1 + 1; idx2 < bodies.size(); ++idx2){
                     const glm::vec3 displacement = bodies[idx2].position - bodies[idx1].position;
@@ -60,6 +60,8 @@ void NBodyExecutor::NaiveExecutor::execute(std::span<Body> bodies, float time_de
                 for (std::span partial_acceleration : partial_accelerations){
                     bodies[idx].acceleration += partial_acceleration[idx];
                 }
+                bodies[idx].velocity += bodies[idx].acceleration * time_delta;
+                bodies[idx].position += bodies[idx].velocity * time_delta;
             }
         };
         thread_pool->push_loop(bodies.size(), merge_partial_task);
@@ -76,10 +78,10 @@ void NBodyExecutor::NaiveExecutor::execute(std::span<Body> bodies, float time_de
                 bodies[idx2].acceleration -= coefficient * bodies[idx1].mass;
             }
         }
-    }
 
-    for (auto &body : bodies){
-        body.velocity += body.acceleration * time_delta;
-        body.position += body.velocity * time_delta;
+        for (auto &body : bodies){
+            body.velocity += body.acceleration * time_delta;
+            body.position += body.velocity * time_delta;
+        }
     }
 }
