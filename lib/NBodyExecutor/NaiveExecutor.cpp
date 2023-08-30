@@ -2,10 +2,10 @@
 // Created by gomkyung2 on 2023/08/26.
 //
 
-#include "NaiveExecutor.hpp"
+#include "NBodyExecutor/NaiveExecutor.hpp"
 
-#include <glm/gtx/common.hpp>
-#include <glm/gtx/norm.hpp>
+#include "glm/gtx/common.hpp"
+#include "glm/gtx/norm.hpp"
 
 std::vector<std::size_t> NBodyExecutor::NaiveExecutor::generateWorkPartition(std::size_t num_bodies, std::size_t num_threads) noexcept {
     std::vector<std::size_t> result;

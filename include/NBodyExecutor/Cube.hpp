@@ -5,7 +5,7 @@
 #pragma once
 
 #include <array>
-#include <glm/ext/vector_float3.hpp>
+#include "glm/ext/vector_float3.hpp"
 #include "macros.hpp"
 
 namespace NBodyExecutor{

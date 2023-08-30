@@ -2,7 +2,7 @@
 // Created by gomkyung2 on 2023/08/26.
 //
 
-#include "Cube.hpp"
+#include "NBodyExecutor/Cube.hpp"
 
 NBodyExecutor::Cube::Cube(const glm::vec3 &position, float size) NBODY_EXECUTOR_NOEXCEPT_IF_RELEASE : position { position }, size { size } {
     assert(size > 0.f);

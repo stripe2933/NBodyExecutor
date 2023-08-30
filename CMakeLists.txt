@@ -13,10 +13,10 @@ find_package(glm CONFIG REQUIRED)
 find_path(BSHOSHANY_THREAD_POOL_INCLUDE_DIRS "BS_thread_pool.hpp")
 
 add_library(NBodyExecutor STATIC
-    lib/NaiveExecutor.cpp
-    lib/BarnesHutExecutor.cpp
-    lib/OctTree.cpp
-    lib/Cube.cpp
+        lib/NBodyExecutor/NaiveExecutor.cpp
+        lib/NBodyExecutor/BarnesHutExecutor.cpp
+        lib/NBodyExecutor/OctTree.cpp
+        lib/NBodyExecutor/Cube.cpp
 )
 target_include_directories(NBodyExecutor
     PUBLIC

@@ -9,12 +9,12 @@
 #include <glm/gtc/random.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#define EXECUTE_METHOD 0 // 0 -> NaiveExecutor, 1 -> BarnesHutExecutor
+#define EXECUTE_METHOD 1 // 0 -> NaiveExecutor, 1 -> BarnesHutExecutor
 #if EXECUTE_METHOD == 0
-#include <NaiveExecutor.hpp>
+#include <NBodyExecutor/NaiveExecutor.hpp>
 #define EXECUTOR NaiveExecutor
 #elif EXECUTE_METHOD == 1
-#include <BarnesHutExecutor.hpp>
+#include <NBodyExecutor/BarnesHutExecutor.hpp>
 #define EXECUTOR BarnesHutExecutor
 #endif
 

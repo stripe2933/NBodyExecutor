@@ -2,11 +2,11 @@
 // Created by gomkyung2 on 2023/08/26.
 //
 
-#include "OctTree.hpp"
+#include "NBodyExecutor/OctTree.hpp"
 
 #include <numeric>
-#include <glm/gtc/constants.hpp>
-#include <glm/vector_relational.hpp>
+#include "glm/gtc/constants.hpp"
+#include "glm/vector_relational.hpp"
 
 std::size_t NBodyExecutor::OctTree::Node::getChildNodeIndex(const glm::vec3 &position) const NBODY_EXECUTOR_NOEXCEPT_IF_RELEASE {
     // Check if position is inside the data.bound.

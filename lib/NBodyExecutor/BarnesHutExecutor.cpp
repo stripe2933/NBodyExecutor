@@ -2,12 +2,12 @@
 // Created by gomkyung2 on 2023/08/26.
 //
 
-#include "BarnesHutExecutor.hpp"
+#include "NBodyExecutor/BarnesHutExecutor.hpp"
 
 #include <numeric>
-#include <glm/common.hpp>
-#include <glm/gtx/component_wise.hpp>
-#include <glm/gtx/norm.hpp>
+#include "glm/common.hpp"
+#include "glm/gtx/component_wise.hpp"
+#include "glm/gtx/norm.hpp"
 
 NBodyExecutor::Cube NBodyExecutor::BarnesHutExecutor::getBodyBound(std::span<Body> bodies) {
     constexpr glm::vec3 max { std::numeric_limits<float>::max() };
