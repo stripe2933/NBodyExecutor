@@ -88,4 +88,12 @@ void NBodyExecutor::BarnesHutExecutor::execute(std::span<Body> bodies, float tim
         body.velocity += body.acceleration * time_delta;
         body.position += body.velocity * time_delta;
     }
+
+    if (record_node_boxes){
+        node_boxes = tree.getNonEmptyBoxes();
+    }
+}
+
+std::span<const NBodyExecutor::Cube> NBodyExecutor::BarnesHutExecutor::getNodeBoxes() const noexcept{
+    return node_boxes;
 }

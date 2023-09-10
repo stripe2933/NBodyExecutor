@@ -10,6 +10,8 @@
 namespace NBodyExecutor{
     class BarnesHutExecutor : public Executor{
     private:
+        std::vector<Cube> node_boxes; // will be recorded for every execution, when record_node_boxes is true.
+
         /**
          * @brief Get the bound of given bodies.
          * @param bodies Bodies.
@@ -19,10 +21,15 @@ namespace NBodyExecutor{
         void applyGravityField(Body &body, const OctTree::Node *node) const;
 
     public:
-        float threshold = 1.f; // If (node size) / (body distance) is less than this value, regards the node as a single body.
+        // If true, node boxes of built octtree is recorded for every execution. You can get recorded node boxes by
+        // getNodeBoxes() method.
+        bool record_node_boxes = false;
+        // If (node size) / (body distance) is less than this value, regards the node as a single body.
+        float threshold = 1.f;
 
         explicit BarnesHutExecutor(std::unique_ptr<BS::thread_pool> thread_pool = nullptr);
 
         void execute(std::span<Body> bodies, float time_delta) override;
+        [[nodiscard]] std::span<const Cube> getNodeBoxes() const noexcept;
     };
 };
